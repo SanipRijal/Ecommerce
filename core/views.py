@@ -17,6 +17,7 @@ class IndexView(TemplateView):
         context['accessories'] = Product.objects.filter(category__name__contains='Accessories')
         context['trending'] = Product.objects.filter(views__gte=100).order_by('-views')
         context['super_deals'] = Product.objects.filter(super_deals=True)
+        context['banners'] = BannerImage.objects.all()
         return context
 
     def post(self, request, *args, **kwargs):
