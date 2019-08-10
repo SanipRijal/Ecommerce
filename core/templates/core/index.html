@@ -12,7 +12,7 @@
         <div class="banner-slider owl-carousel">
             {% for item in banners %}
             <div class="item">
-                <img src="{{ item.image.url }}" style="width=1838px; height=352px;">
+                <img src="{% cropped_thumbnail item 'cropping' %}">
             </div>
             {% endfor %}
         </div>
