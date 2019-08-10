@@ -1,8 +1,9 @@
 from django.contrib import admin
 from .models import *
+from image_cropping.admin import ImageCroppingMixin
 
 
-class ProductImage(admin.TabularInline):
+class ProductImage(ImageCroppingMixin, admin.TabularInline):
     model = ProductImage
 
 

@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% load filters %}
+{% load cropping %}
 {% block content %}
 <script>
     .itms-lst{
@@ -49,10 +50,10 @@
                     <div class="sup-deal owl-carousel">
                         {% for item in super_deals %}
                         <div class="item">
-                            <a href="{% url 'core:product_detail' item.pk %}">
+                            <a href="{% url 'core:detail' item.pk %}">
                                 <div class="sd-wrap">
                                     <div class="sd-img">
-                                        <img src="{{ item.images.first.image.url }}">
+                                        <img src="{% cropped_thumbnail item.images.first 'listing' %}">
                                     </div>
                                     <div class="sd-des">
                                         <div class="sd-title">
@@ -91,7 +92,7 @@
                                     <h5>{{ trending.first.name }}</h5>
                                 </div>
 
-                                <img src="{{ trending.first.images.first.image.url }}">
+                                <img src="{% cropped_thumbnail trending.first.images.first 'trending_big' %}">
                             </a>
                         </div>
                     </div>
@@ -107,7 +108,7 @@
                                                 <h5>{{ item.name }}</h5>
                                             </div>
 
-                                            <img src="{{ item.images.first.image.url }}">
+                                            <img src="{% cropped_thumbnail item.images.first 'trending_small' %}">
                                         </a>
                                     </div>
                                 </div>
@@ -136,7 +137,7 @@
                         <div class="row">
                             <a href="{% url 'core:detail' item.pk %}">
                                 <div class="it-bg">
-                                    <img src="{{ item.images.first.image.url }}" style="width:380px; height:338px;">
+                                    <img src="{% cropped_thumbnail item.images.first 'offer' %}">
                                     <div class="it-txt">
                                             <p>{{ item.name }}</p>
                                     </div>
@@ -150,7 +151,7 @@
                             <a href="{% url 'core:detail' product.pk %}">
                                 <div class="sd-wrap">
                                     <div class="sd-img">
-                                        <img src="{{ product.images.first.image.url }}" style="width:169px; height:169px;">
+                                        <img src="{% cropped_thumbnail product.images.first 'listing' %}">
                                     </div>
                                     <div class="sd-des">
                                         <div class="sd-title">
@@ -216,7 +217,7 @@
                         <div class="row">
                             <a href="{% url 'core:detail' item.pk %}">
                                 <div class="it-bg">
-                                    <img src="{{ item.images.first.image.url }}" style="width:380px; height:338px;">
+                                    <img src="{% cropped_thumbnail item.images.first 'offer' %}">
                                     <div class="it-txt">
                                             <p>{{ item.name }}</p>
                                     </div>
@@ -230,7 +231,7 @@
                             <a href="{% url 'core:detail' product.pk %}">
                                 <div class="sd-wrap">
                                     <div class="sd-img">
-                                        <img src="{{ product.images.first.image.url }}" style="width:169px; height:169px;">
+                                        <img src="{% cropped_thumbnail product.images.first 'listing' %}">
                                     </div>
                                     <div class="sd-des">
                                         <div class="sd-title">
@@ -297,7 +298,7 @@
                         <div class="row">
                             <a href="{% url 'core:detail' item.pk %}">
                                 <div class="it-bg">
-                                    <img src="{{ item.images.first.image.url }}" style="width:380px; height:338px;">
+                                    <img src="{% cropped_thumbnail item.images.first 'offer' %}">
                                     <div class="it-txt">
                                             <p>{{ item.name }}</p>
                                     </div>
@@ -312,7 +313,7 @@
                             <a href="{% url 'core:detail' product.pk %}">
                                 <div class="sd-wrap">
                                     <div class="sd-img">
-                                        <img src="{{ product.images.first.image.url }}" style="width:169px; height:169px;">
+                                        <img src="{% cropped_thumbnail product.images.first 'listing' %}">
                                     </div>
                                     <div class="sd-des">
                                         <div class="sd-title">

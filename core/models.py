@@ -1,4 +1,5 @@
 from django.db import models
+from image_cropping import ImageRatioField
 
 
 class Category(models.Model):
@@ -38,6 +39,12 @@ class ProductHighlight(models.Model):
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='products/')
+    listing = ImageRatioField('image', '161x161')
+    detail = ImageRatioField('image', '351x371')
+    icon = ImageRatioField('image', '48x48')
+    trending_big = ImageRatioField('image', '117x205')
+    trending_small = ImageRatioField('image', '87x87')
+    offer = ImageRatioField('image', '380x338')
 
 
 class ProductSpecificationType(models.Model):

@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load cropping %}
 {% block content %}
     <section class="mst-vwd p50">
         <div class="container">
@@ -14,7 +15,7 @@
                         <a href="">
                             <div class="sd-wrap">
                                 <div class="sd-img">
-                                    <img src="{{ item.images.first.image.url }}">
+                                    <img src="{% cropped_thumbnail item.images.first 'listing' %}">
                                 </div>
                                 <div class="sd-des">
                                     <div class="sd-title">

@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load cropping %}
 {% block content %}
     <section class="prd-detail p20">
         <div class="container">
@@ -10,7 +11,7 @@
                         <div class="slider slider-for">
                             {% for item in item.images.all %}
                             <div class="slick-big">
-                                <img src="{{ item.image.url }}" style="width:393px; height:393px;">
+                                <img src="{% cropped_thumbnail item 'detail' %}">
                             </div>
                             {% endfor %}
 
@@ -18,7 +19,7 @@
                         <div class="slider slider-nav">
                             {% for item in item.images.all %}
                             <div class="slick-small">
-                                <img src="{{ item.image.url }}" style="width:90px; height:90px;">
+                                <img src="{% cropped_thumbnail item 'icon' %}">
                             </div>
                             {% endfor %}
                         </div>
