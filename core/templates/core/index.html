@@ -9,22 +9,11 @@
 </script>
     <section class="banner">
         <div class="banner-slider owl-carousel">
+            {% for item in banners %}
             <div class="item">
-                <img src="{% static 'images/ban2.webp' %}">
+                <img src="{{ item.image.url }}" style="width=1838px; height=352px;">
             </div>
-
-            <div class="item">
-                <img src="{% static 'images/ban1.jpg' %}">
-            </div>
-
-            <div class="item">
-                <img src="{% static 'images/ban2.webp' %}">
-            </div>
-            
-            <div class="item">
-                <img src="{% static 'images/ban1.jpg' %}">
-            </div>
-
+            {% endfor %}
         </div>
     </section>
     {% if super_deals %}

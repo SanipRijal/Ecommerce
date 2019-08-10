@@ -55,3 +55,7 @@ class ProductSpecification(models.Model):
     specification_value = models.CharField(max_length=100)
 
 
+class BannerImage(models.Model):
+    image = models.ImageField(upload_to='banners/')
+
+
