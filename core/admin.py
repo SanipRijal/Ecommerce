@@ -26,4 +26,10 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category)
 admin.site.register(SubCategory)
-admin.site.register(BannerImage)
+
+
+class BannerCropperAdmin(ImageCroppingMixin, admin.ModelAdmin):
+    pass
+
+
+admin.site.register(BannerImage, BannerCropperAdmin)
