@@ -64,5 +64,6 @@ class ProductSpecification(models.Model):
 
 class BannerImage(models.Model):
     image = models.ImageField(upload_to='banners/')
+    cropping = ImageRatioField('image', '1838x352')
 
 
