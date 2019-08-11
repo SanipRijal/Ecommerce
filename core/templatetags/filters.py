@@ -9,7 +9,9 @@ register = template.Library()
 
 
 @register.filter(name='get_related')
-def get_related(product_id):
+def get_related(product_id, counter):
+    page_size = 4
     product = Product.objects.get(id=product_id)
-    return Product.objects.filter(category=product.category)[:4]
+    products = Product.objects.filter(category=product.category)[(counter-1)*page_size:(counter*page_size)]
+    return products
 

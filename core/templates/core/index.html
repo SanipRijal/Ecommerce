@@ -76,6 +76,86 @@
     </section>
     {% endif %}
 
+    <section class="itms-lst p20">
+        <div class="container">
+            <div class="all-head">
+                <img src="{% static 'images/computer.png' %}"><h3>Computers</h3>
+            </div>
+
+            <div class="it-lst1 owl-carousel">
+                {% for item in offer_computers %}
+                <div class="item">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <a href="{% url 'core:detail' item.pk %}">
+                                <div class="it-bg">
+                                    <img src="{% cropped_thumbnail item.images.first 'offer' %}">
+                                    <div class="it-txt">
+                                            <p>{{ item.name }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% for product in item.id|get_related:forloop.counter %}
+                    <div class="col-md-2">
+                        <div class="row">
+                            <a href="{% url 'core:detail' product.pk %}">
+                                <div class="sd-wrap">
+                                    <div class="sd-img">
+                                        <img src="{% cropped_thumbnail product.images.first 'listing' %}">
+                                    </div>
+                                    <div class="sd-des">
+                                        <div class="sd-title">
+                                            <h4>{{ product.name }}</h4>
+                                        </div>
+                                        <span class="dis-price">{{ product.new_price }}</span>
+                                        <span class="rel-price">{{ product.previous_price }}</span>
+
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+
+    <section class="mb-itms-lst">
+        <div class="container">
+            <div class="all-head">
+                <img src="{% static 'images/computer.png' %}"><h3>Computers</h3>
+            </div>
+
+            <div class="mb-ls1 owl-carousel">
+                {% for item in computers %}
+                <div class="item">
+                    <a href="{% url 'core:detail' item.pk %}">
+                        <div class="sd-wrap">
+                            <div class="sd-img">
+                                <img src="{{ item.images.first.image.url }}">
+                            </div>
+                            <div class="sd-des">
+                                <div class="sd-title">
+                                    <h4>{{ item.name }}</h4>
+                                </div>
+                                <span class="dis-price">${{ item.new_price }}</span>
+                                <span class="rel-price">${{ item.previous_price }}</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+
     {% if trending %}
     <section class="trending p50">
         <div class="container">
@@ -127,86 +207,6 @@
     <section class="itms-lst p20">
         <div class="container">
             <div class="all-head">
-                <img src="{% static 'images/computer.png' %}"><h3>Computers</h3>
-            </div>
-
-            <div class="it-lst1 owl-carousel">
-                {% for item in offer_computers %}
-                <div class="item">
-                    <div class="col-md-4">
-                        <div class="row">
-                            <a href="{% url 'core:detail' item.pk %}">
-                                <div class="it-bg">
-                                    <img src="{% cropped_thumbnail item.images.first 'offer' %}">
-                                    <div class="it-txt">
-                                            <p>{{ item.name }}</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    {% for product in item.id|get_related %}
-                    <div class="col-md-2">
-                        <div class="row">
-                            <a href="{% url 'core:detail' product.pk %}">
-                                <div class="sd-wrap">
-                                    <div class="sd-img">
-                                        <img src="{% cropped_thumbnail product.images.first 'listing' %}">
-                                    </div>
-                                    <div class="sd-des">
-                                        <div class="sd-title">
-                                            <h4>{{ product.name }}</h4>
-                                        </div>
-                                        <span class="dis-price">{{ product.new_price }}</span>
-                                        <span class="rel-price">{{ product.previous_price }}</span>
-                                        
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% endfor %}
-            </div>
-
-        </div>
-    </section>
-
-    <section class="mb-itms-lst">
-        <div class="container">
-            <div class="all-head">
-                <img src="{% static 'images/computer.png' %}"><h3>Computers</h3>
-            </div>
-
-            <div class="mb-ls1 owl-carousel">
-                {% for item in computers %}
-                <div class="item">
-                    <a href="{% url 'core:detail' item.pk %}">
-                        <div class="sd-wrap">
-                            <div class="sd-img">
-                                <img src="{{ item.images.first.image.url }}">
-                            </div>
-                            <div class="sd-des">
-                                <div class="sd-title">
-                                    <h4>{{ item.name }}</h4>
-                                </div>
-                                <span class="dis-price">${{ item.new_price }}</span>
-                                <span class="rel-price">${{ item.previous_price }}</span>
-
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                {% endfor %}
-            </div>
-
-        </div>
-    </section>
-
-    <section class="itms-lst p20">
-        <div class="container">
-            <div class="all-head">
                 <img src="{% static 'images/laptop.png' %}"><h3>Laptops</h3>
             </div>
 
@@ -225,7 +225,7 @@
                             </a>
                         </div>
                     </div>
-                    {% for product in item.id|get_related %}
+                    {% for product in item.id|get_related:forloop.counter %}
                     <div class="col-md-2">
                         <div class="row">
                             <a href="{% url 'core:detail' product.pk %}">
@@ -307,7 +307,7 @@
                         </div>
                     </div>
 
-                    {% for product in item.id|get_related %}
+                    {% for product in item.id|get_related:forloop.counter %}
                     <div class="col-md-2 col-sm-6 col-xs-6">
                         <div class="row">
                             <a href="{% url 'core:detail' product.pk %}">
